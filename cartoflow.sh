@@ -1,15 +1,10 @@
 #! /usr/bin/bash
-
 ##Make sure to run:
 #chmod u+x cartoflow.sh
-
 ##Then run at least:
 #bash cartoflow.sh
-
 ##Workflow Program which runs all other Programs##
-
 ##################################
-
 #Define Input and Output Files
 infile="" #-i
 outfile3="faceted_inact_node_network.tsv" #-o
@@ -27,8 +22,6 @@ fileName2="comm2nodes.txt" #Community to Nodes file suffix -b
 CARTOGENE_ARGS=""
 GENEBRIDGE_ARGS=""
 ###USER DEFINED FUNCTIONS###
-
-
 # Iterating through the arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -125,29 +118,25 @@ while [[ $# -gt 0 ]]; do
             ;;
     esac
 done
-
-
 #making a cartoflow master folder and download everything in there
 mkdir cartoflow
 cd cartoflow
-
 #repository download
 git clone https://github.com/ZealousGeneticist/cartogene.git
 git clone https://github.com/bagrow/linkcomm.git
 git clone https://github.com/ZealousGeneticist/genebridge.git
-
+#
 cd ./cartogene
+read -p "Please DO NOT CONTINUE until your chemical list input file (up to cartogene specifications of course) is placed in the cartogene respository."
+read -p "Are you sure you want to continue?"
 python3 cartogene_standalone.py $CARTOGENE_ARGS
-
+#
 cp $outfile3 ../linkcomm
 cd ../linkcomm
 python3 python/linkclustering.py $outfile3
-
-
 #Aquire actual file names
 fileName=$(find "." -type f -name "*$fileName")
 fileName2=$(find "." -type f -name "*$fileName2")
-
 #fileName & fileName2 refer to linkcomm files 
 cp $fileName genebridge
 cp $fileName2 genebridge
