@@ -118,9 +118,7 @@ while [[ $# -gt 0 ]]; do
             ;;
     esac
 done
-#making a cartoflow master folder and download everything in there
-mkdir cartoflow
-cd cartoflow
+
 #repository download
 git clone https://github.com/ZealousGeneticist/cartogene.git
 git clone https://github.com/bagrow/linkcomm.git
