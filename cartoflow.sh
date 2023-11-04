@@ -123,11 +123,10 @@ done
 git clone https://github.com/ZealousGeneticist/cartogene.git
 git clone https://github.com/bagrow/linkcomm.git
 git clone https://github.com/ZealousGeneticist/genebridge.git
-echo "If git wasn't 'found', then you may have to run this:\nsudo apt install git"
+echo "\n\nIf git wasn't 'found', then you may have to run this:\nsudo apt install git\n\n"
 #
+cp $infile ./cartogene
 cd ./cartogene
-read -p "Please DO NOT CONTINUE until your chemical list input file (up to cartogene specifications of course) is placed in the cartogene respository."
-read -p "Are you sure you want to continue?"
 python3 cartogene_standalone.py $CARTOGENE_ARGS
 #
 cp $outfile3 ../linkcomm
