@@ -127,6 +127,7 @@ echo ""
 echo "If git wasn't 'found', then you may have to run this:"
 echo "sudo apt install git"
 echo ""
+sleep 5
 #
 cp $infile ./cartogene
 cd ./cartogene
@@ -135,7 +136,7 @@ python3 cartogene_standalone.py $CARTOGENE_ARGS
 cp $outfile3 ../linkcomm
 cd ../linkcomm
 sleep 2
-python3 python/linkclustering.py $outfile3
+python3 python/link_clustering.py $outfile3
 #Aquire actual file names
 fileName=$(find "." -type f -name "*$fileName")
 fileName2=$(find "." -type f -name "*$fileName2")
