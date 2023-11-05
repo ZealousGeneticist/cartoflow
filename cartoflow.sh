@@ -44,7 +44,6 @@ while [[ $# -gt 0 ]]; do
                 CARTOGENE_ARGS="$CARTOGENE_ARGS -c $2"
                 GENEBRIDGE_ARGS="$GENEBRIDGE_ARGS -c $2"
                 outfile1="$2"
-                outfile1+="_chemical-protein.tsv"
             fi
             shift 2
             ;;
@@ -140,12 +139,13 @@ python3 python/link_clustering.py $outfile3
 #Aquire actual file names
 fileName=$(find "." -type f -name "*$fileName")
 fileName2=$(find "." -type f -name "*$fileName2")
+outfile1+="_chemical-protein.tsv"
 #fileName & fileName2 refer to linkcomm files 
 cp $fileName genebridge
 cp $fileName2 genebridge
 cd ../cartogene
-cp $outfile1 genebridge
-cd genebridge
+cp $outfile1 ../genebridge
+cd ../genebridge
 sleep 2
 python3 genebridge.py $GENEBRIDGE_ARGS
 cp Pyvis_Graph.html ..
