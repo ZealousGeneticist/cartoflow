@@ -128,10 +128,14 @@ echo "sudo apt install git"
 echo ""
 sleep 5
 #
+echo "Cartogene Phase..."
+sleep 1
 cp $infile ./cartogene
 cd ./cartogene
 python3 cartogene_standalone.py $CARTOGENE_ARGS
 #
+sleep 1
+echo "Linkcomm Phase..."
 cp $outfile3 ../linkcomm
 cd ../linkcomm
 sleep 2
@@ -141,6 +145,9 @@ fileName=$(find "." -type f -name "*$fileName")
 fileName2=$(find "." -type f -name "*$fileName2")
 outfile1+="_chemical-protein.tsv"
 #fileName & fileName2 refer to linkcomm files 
+sleep 1
+echo "Genebridge Phase..."
+sleep 2
 cp $fileName ../genebridge
 cp $fileName2 ../genebridge
 cd ../cartogene
@@ -151,6 +158,7 @@ python3 genebridge.py $GENEBRIDGE_ARGS
 cp Pyvis_Graph.html ..
 cp commMetrics.tsv ..
 cp nodeMetrics.tsv ..
+cp $fileName ../edge2comm.txt
 cd ..
 #conclusion message
 echo "Workflow complete!"
