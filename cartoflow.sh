@@ -141,8 +141,8 @@ fileName=$(find "." -type f -name "*$fileName")
 fileName2=$(find "." -type f -name "*$fileName2")
 outfile1+="_chemical-protein.tsv"
 #fileName & fileName2 refer to linkcomm files 
-cp $fileName genebridge
-cp $fileName2 genebridge
+cp $fileName ../genebridge
+cp $fileName2 ../genebridge
 cd ../cartogene
 cp $outfile1 ../genebridge
 cd ../genebridge
