@@ -123,7 +123,10 @@ done
 git clone https://github.com/ZealousGeneticist/cartogene.git
 git clone https://github.com/bagrow/linkcomm.git
 git clone https://github.com/ZealousGeneticist/genebridge.git
-echo "\n\nIf git wasn't 'found', then you may have to run this:\nsudo apt install git\n\n"
+echo ""
+echo "If git wasn't 'found', then you may have to run this:"
+echo "sudo apt install git"
+echo ""
 #
 cp $infile ./cartogene
 cd ./cartogene
@@ -131,6 +134,7 @@ python3 cartogene_standalone.py $CARTOGENE_ARGS
 #
 cp $outfile3 ../linkcomm
 cd ../linkcomm
+sleep 2
 python3 python/linkclustering.py $outfile3
 #Aquire actual file names
 fileName=$(find "." -type f -name "*$fileName")
@@ -141,6 +145,7 @@ cp $fileName2 genebridge
 cd ../cartogene
 cp $outfile1 genebridge
 cd genebridge
+sleep 2
 python3 genebridge.py $GENEBRIDGE_ARGS
 cp Pyvis_Graph.html ..
 cp commMetrics.tsv ..
