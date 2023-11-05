@@ -141,6 +141,7 @@ cd ../linkcomm
 sleep 2
 python3 python/link_clustering.py $outfile3
 #Aquire actual file names
+e2c=$fileName
 fileName=$(find "." -type f -name "*$fileName")
 fileName2=$(find "." -type f -name "*$fileName2")
 outfile1+="_chemical-protein.tsv"
@@ -158,7 +159,7 @@ python3 genebridge.py $GENEBRIDGE_ARGS
 cp Pyvis_Graph.html ..
 cp commMetrics.tsv ..
 cp nodeMetrics.tsv ..
-cp $fileName ../edge2comm.txt
+cp $fileName ../$e2c
 cd ..
 #conclusion message
 echo "Workflow complete!"
