@@ -156,6 +156,7 @@ cp $outfile1 ../genebridge
 cd ../genebridge
 sleep 2
 python3 genebridge.py $GENEBRIDGE_ARGS
+cp -r community ..
 cp Pyvis_Graph.html ..
 cp commMetrics.tsv ..
 cp nodeMetrics.tsv ..
