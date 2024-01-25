@@ -119,6 +119,9 @@ while [[ $# -gt 0 ]]; do
 done
 
 #repository download
+rm -rf cartogene || true
+rm -rf linkcomm || true
+rm -rf genebridge || true
 git clone https://github.com/ZealousGeneticist/cartogene.git
 git clone https://github.com/bagrow/linkcomm.git
 git clone https://github.com/ZealousGeneticist/genebridge.git
