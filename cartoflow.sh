@@ -120,10 +120,10 @@ done
 
 #repository download
 rm -rf cartogene || true
-rm -rf linkcomm || true
+rm -rf linkcomm-U || true
 rm -rf genebridge || true
 git clone https://github.com/ZealousGeneticist/cartogene.git
-git clone https://github.com/bagrow/linkcomm.git
+git clone https://github.com/ZealousGeneticist/linkcomm-U.git
 git clone https://github.com/ZealousGeneticist/genebridge.git
 echo ""
 echo "If git wasn't 'found', then you may have to run this:"
@@ -138,9 +138,9 @@ cd ./cartogene
 python3 cartogene_standalone.py $CARTOGENE_ARGS
 #
 sleep 1
-echo "Linkcomm Phase..."
-cp $outfile3 ../linkcomm
-cd ../linkcomm
+echo "LinkComm-U Phase..."
+cp $outfile3 ../linkcomm-U
+cd ../linkcomm-U
 sleep 2
 python3 python/link_clustering.py $outfile3
 #Aquire actual file names
@@ -148,7 +148,7 @@ e2c=$fileName
 fileName=$(find "." -type f -name "*$fileName")
 fileName2=$(find "." -type f -name "*$fileName2")
 outfile1+="_chemical-protein.tsv"
-#fileName & fileName2 refer to linkcomm files 
+#fileName & fileName2 refer to linkcomm-U files 
 sleep 1
 echo "Genebridge Phase..."
 sleep 2
@@ -156,6 +156,7 @@ cp $fileName ../genebridge
 cp $fileName2 ../genebridge
 cd ../cartogene
 cp $outfile1 ../genebridge
+cp $outfile1 ..
 cd ../genebridge
 sleep 2
 python3 genebridge.py $GENEBRIDGE_ARGS
