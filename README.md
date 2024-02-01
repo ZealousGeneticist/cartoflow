@@ -67,4 +67,5 @@ linkcomm
 genebridge
 ->
 
-Output: <your_chem_file>,<chemicalProteinInteractions.tsv>, <nodeMetrics.tsv>,<communityMetrics.tsv>,<fullNetworkGraph.html>, <communityEdgeList.tsv>, <toppfunANDgraphs> (<community#GeneEnrichment.csv>,<community#Subgraph.html>)
+Output: <your_chem_file>,<chemicalProteinInteractions.tsv>, <nodeMetrics.tsv>,<communityMetrics.tsv>,<fullNetworkGraph.html>, <communityEdgeList.tsv>
+<toppfunANDgraphs> CONTAINS <community#GeneEnrichment.csv>,<community#Subgraph.html>
