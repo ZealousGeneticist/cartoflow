@@ -12,6 +12,7 @@ Welcome to the all-in-one workflow, cartoflow! Part of the goal of this program 
 + This entire section is repeated in the cartogene User Guide as well, but will be repeated here as well.
     + Put the chemicals you are wanting to analyze in the input text file (tutorial example (in cartogene): <bioactive.tsv>) as a MeSH® name, synonym, or accession ID (“MESH:…”), or by CAS RN. You may also limit your search to official names by using the “name:” prefix. *Make sure they are return- or |-delimited!*
         + The tutorial text file (in cartogene) <bioactive.tsv> has been given to show multiple examples for how chemicals can be written. However, if you are unsure as to if your chemical is not showing up, check the Comparative Toxicogenomic Database to make sure it is there!
+
 2.The next part is then to put <your_chem_file> in the cartoflow folder. Easy!
 
 ------
