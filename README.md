@@ -42,7 +42,7 @@ So, nodes are individual data points, edges are connections between them, networ
 
 ------
 
-Once the workflow is finished, there should be 5 other files output into the cartoflow file and a folder containing potentially many files. Those are <nodeMetrics.tsv>, <communityEdgeList.tsv>, <communityMetrics.tsv>, <chemicalProteinInteractions.tsv>, and <fullNetworkGraph.html> . The folder is called <toppfunANDgraphs> and contains two types of files: <community#GeneEnrichment.csv> and <community#Subgraph.html> .
+Once the workflow is finished, there should be 5 other files output into the cartoflow file and a folder containing potentially many files. Those are <nodeMetrics.tsv>, <communityEdgeList.tsv>, <communityMetrics.tsv>, <chemicalProteinInteractions.tsv>, and <fullNetworkGraph.html> . The folder is called toppfunANDgraphs and contains two types of files: <community#GeneEnrichment.csv> and <community#Subgraph.html> .
 
 + <fullNetworkGraph.html> is the visualization of the entire network of chemical-protein interactions and gene-gene (protein-protein) interactions.
 + <nodeMetrics.tsv> is a table of the nodes in the network and a number of statistics, such as the communities they are part of, about them. 
@@ -50,7 +50,7 @@ Once the workflow is finished, there should be 5 other files output into the car
 + <communityMetrics.tsv> is a table of communities in the network and a number of statistics, such as the number of nodes that are in the community.
 + <communityEdgeList.tsv> is a table of edges in the network and which community they are a part of.
     + Edges only have 1 community, unlike nodes.
-+ <toppfunANDgraphs> contains the information for individual communities. Communities matter because it breaks down the complexity of the network into even more closely associated parts. The two files that make up this information are:
++ toppfunANDgraphs contains the information for individual communities. Communities matter because it breaks down the complexity of the network into even more closely associated parts. The two files that make up this information are:
     + <community#GeneEnrichment.csv> are the gene enrichments from ToppFun of the genes that make up community #, where # is the community number. *Statistically significant* insights can be found here, and it is presorted by the type of association (example: disease) and then how significant it is while accounting for the chance of false positives (qValueFDR_BH).
     + <community#Subgraph.html> are graphs just like <fullNetworkGraph.htm> EXCEPT they only contain nodes that are part of community #, where # is the community number. This is extremely helpful, more so than even the full network graph, because you get a less clutter look while keeping things that show whether they are a protein or a chemical, or part of multiple other communities for each node.
 
@@ -68,4 +68,4 @@ genebridge
 ->
 
 Output: <your_chem_file>,<chemicalProteinInteractions.tsv>, <nodeMetrics.tsv>,<communityMetrics.tsv>,<fullNetworkGraph.html>, <communityEdgeList.tsv>
-<toppfunANDgraphs> CONTAINS <community#GeneEnrichment.csv>,<community#Subgraph.html>
+toppfunANDgraphs CONTAINS <community#GeneEnrichment.csv>,<community#Subgraph.html>
