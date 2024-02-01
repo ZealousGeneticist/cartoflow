@@ -13,6 +13,7 @@ Welcome to the all-in-one workflow, cartoflow! Part of the goal of this program 
     + Put the chemicals you are wanting to analyze in the input text file (tutorial example (in cartogene): <bioactive.tsv>) as a MeSH® name, synonym, or accession ID (“MESH:…”), or by CAS RN. You may also limit your search to official names by using the “name:” prefix. *Make sure they are return- or |-delimited!*
         + The tutorial text file (in cartogene) <bioactive.tsv> has been given to show multiple examples for how chemicals can be written. However, if you are unsure as to if your chemical is not showing up, check the Comparative Toxicogenomic Database to make sure it is there!
 2.The next part is then to put <your_chem_file> in the cartoflow folder. Easy!
+
 ------
 
 **Once you have made and placed <your_chem_file> in the cartoflow folder, just run these two commands.**
@@ -25,6 +26,7 @@ Welcome to the all-in-one workflow, cartoflow! Part of the goal of this program 
 ***If you are using a machine like a supercomputer where you do not have permissions to install packages to the python folder which are needed for this program, make sure to run this command after MANUALLY installing the required packages. A fix for this so you don't need to manually do that is coming soon for the less permissioned among your machines.***
 
 **bash cartoflow.sh -i <your_chem_file> -z**
+
 ------
 
 #### Quick Guide on Networks
@@ -36,6 +38,7 @@ Welcome to the all-in-one workflow, cartoflow! Part of the goal of this program 
 
     Communities: Communities are groups of nodes that are more densely connected to each other than to nodes outside the group. In a biological network, a community could be a group of proteins who interact more with each other (say, to make an enzyme) than with proteins outside the group.
 So, nodes are individual data points, edges are connections between them, networks are the overall structure, and communities are tightly-knit groups within that structure.
+
 ------
 
 Once the workflow is finished, there should be 5 other files output into the cartoflow file and a folder containing potentially many files. Those are <nodeMetrics.tsv>, <communityEdgeList.tsv>, <communityMetrics.tsv>, <chemicalProteinInteractions.tsv>, and <fullNetworkGraph.html> . The folder is called <toppfunANDgraphs> and contains two types of files: <community#GeneEnrichment.csv> and <community#Subgraph.html> .
