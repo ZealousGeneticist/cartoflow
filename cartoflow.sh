@@ -14,6 +14,7 @@ organism="" #Define Taxonomy ID -g
 test="" #Omniscience function toggle for single file output -t
 debug="" #Debugging toggle for verbose output -d
 removeJSON="" #Toggle for deleting orginal IntAct JSON file -r
+noinstall="" #Disables installation of required packages in requirements.txt -z
 #This one is for genebridge, not cartogene#
 outputHeader="" #Toggle for having headers in the final master list(s) -e
 chugReduction="" #Toggle to enable group betweeneness centrality for genebridge, VERY SLOW -f
@@ -48,25 +49,16 @@ while [[ $# -gt 0 ]]; do
             shift 2
             ;;
         -d)
-            if [ -n "$2" ]; then
-                CARTOGENE_ARGS="$CARTOGENE_ARGS -d $2"
-                debug="$2"
-            fi
-            shift 2
+            CARTOGENE_ARGS="$CARTOGENE_ARGS -d"
+            shift
             ;;
         -e)
-            if [ -n "$2" ]; then
-                GENEBRIDGE_ARGS="$GENEBRIDGE_ARGS -e $2"
-                outputHeader="$2"
-            fi
-            shift 2
+            GENEBRIDGE_ARGS="$GENEBRIDGE_ARGS -e"
+            shift
             ;;
         -f)
-            if [ -n "$2" ]; then
-                GENEBRIDGE_ARGS="$GENEBRIDGE_ARGS -f $2"
-                chugReduction="$2"
-            fi
-            shift 2
+            GENEBRIDGE_ARGS="$GENEBRIDGE_ARGS -f"
+            shift
             ;;
         -g)
             if [ -n "$2" ]; then
@@ -98,18 +90,17 @@ while [[ $# -gt 0 ]]; do
             shift 2
             ;;
         -r)
-            if [ -n "$2" ]; then
-                CARTOGENE_ARGS="$CARTOGENE_ARGS -r $2"
-                removeJSON="$2"
-            fi
-            shift 2
+            CARTOGENE_ARGS="$CARTOGENE_ARGS -r"
+            shift
             ;;
         -t)
-            if [ -n "$2" ]; then
-                CARTOGENE_ARGS="$CARTOGENE_ARGS -t $2"
-                test="$2"
-            fi
-            shift 2
+            CARTOGENE_ARGS="$CARTOGENE_ARGS -t"
+            shift
+            ;;
+        -z)
+            CARTOGENE_ARGS="$CARTOGENE_ARGS -z"
+            GENEBRIDGE_ARGS="$GENEBRIDGE_ARGS -z"
+            shift
             ;;
         *)
             echo "Unknown option: $1"

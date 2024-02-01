@@ -1,5 +1,5 @@
 # cartoflow
-A Python workflow of three programs for taking chemicals, finding the genes they interact with, and mapping the communities of genetic interactions.
+A Python workflow of three programs for taking chemicals, finding the genes they interact with, performing gene enrichment and mapping the communities of genetic interactions.
 
 # Installation Instructions
 git clone https://github.com/ZealousGeneticist/cartoflow.git
@@ -22,6 +22,9 @@ Welcome to the all-in-one workflow, cartoflow! Part of the goal of this program 
 
 **bash cartoflow.sh -i <your_chem_file>**
 
+***If you are using a machine like a supercomputer where you do not have permissions to install packages to the python folder which are needed for this program, make sure to run this command after MANUALLY installing the required packages. A fix for this so you don't need to manually do that is coming soon for the less permissioned among your machines.***
+
+**bash cartoflow.sh -i <your_chem_file> -z**
 ------
 Once the workflow is finished, there should be 4 other files output into the cartoflow file. Those are <nodeMetrics.tsv>, <edge2comm.txt>, <commMetrics.tsv>, and <Pyvis_Graph.html> .
 
