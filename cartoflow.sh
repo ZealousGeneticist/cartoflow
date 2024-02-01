@@ -147,15 +147,15 @@ cp $fileName ../genebridge
 cp $fileName2 ../genebridge
 cd ../cartogene
 cp $outfile1 ../genebridge
-cp $outfile1 ..
+cp $outfile1 ../chemicalProteinInteractions.tsv
 cd ../genebridge
 sleep 2
 python3 genebridge.py $GENEBRIDGE_ARGS
 cp -r toppfunANDgraphs ..
-cp Pyvis_Graph.html ..
-cp commMetrics.tsv ..
+cp Pyvis_Graph.html ../fullNetworkGraph.html
+cp commMetrics.tsv ../communityMetrics.tsv
 cp nodeMetrics.tsv ..
-cp $fileName ../$e2c
+cp $fileName ../communityEdgeList.tsv
 cd ..
 #conclusion message
 echo "Workflow complete!"
