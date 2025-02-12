@@ -20,8 +20,15 @@ outputHeader="" #Toggle for having headers in the final master list(s) -e
 chugReduction="" #Toggle to enable group betweeneness centrality for genebridge, VERY SLOW -f
 fileName="edge2comm.txt" #Edge to Community file suffix -a
 fileName2="comm2nodes.txt" #Community to Nodes file suffix -b
+#This one is for DisGeNet, also known as chem_gene_disease.py, not for cartogene or genebridge
+diseaseFile="allXREFinDO.tsv" # disease oncology file -p
+diseaseOutfile="" # -m
+API_KEY="" #API key for DisGeNet -k
+autoDGN="" #Automatically SKIP for DisGeNet functionality -n & -y
+
 CARTOGENE_ARGS=""
 GENEBRIDGE_ARGS=""
+DGN_ARGS=""
 ###USER DEFINED FUNCTIONS###
 # Iterating through the arguments
 while [[ $# -gt 0 ]]; do
@@ -44,6 +51,7 @@ while [[ $# -gt 0 ]]; do
             if [ -n "$2" ]; then
                 CARTOGENE_ARGS="$CARTOGENE_ARGS -c $2"
                 GENEBRIDGE_ARGS="$GENEBRIDGE_ARGS -c $2"
+                DGN_ARGS="$DGN_ARGS -c ${2}.tsv"
                 outfile1="$2"
             fi
             shift 2
@@ -71,6 +79,7 @@ while [[ $# -gt 0 ]]; do
         -i)
             if [ -n "$2" ]; then
                 CARTOGENE_ARGS="$CARTOGENE_ARGS -i $2"
+                DGN_ARGS="$DGN_ARGS -i $2"
                 infile="$2"
             fi
             shift 2
@@ -82,10 +91,35 @@ while [[ $# -gt 0 ]]; do
             fi
             shift 2
             ;;
+        -k)
+            if [ -n "$2" ]; then
+                DGN_ARGS="$DGN_ARGS -k $2"
+                API_KEY="$2"
+            fi
+            shift 2
+            ;;
+        -m)
+            if [ -n "$2" ]; then
+                DGN_ARGS="$DGN_ARGS -m $2"
+                diseaseOutfile="$2"
+            fi
+            shift 2
+            ;;
+        -n)
+            autoDGN="SKIP"
+            shift
+            ;;
         -o)
             if [ -n "$2" ]; then
                 CARTOGENE_ARGS="$CARTOGENE_ARGS -o $2"
                 outfile3="$2"
+            fi
+            shift 2
+            ;;
+        -p)
+            if [ -n "$2" ]; then
+                DGN_ARGS="$DGN_ARGS -p $2"
+                diseaseFile="$2"
             fi
             shift 2
             ;;
@@ -95,6 +129,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         -t)
             CARTOGENE_ARGS="$CARTOGENE_ARGS -t"
+            shift
+            ;;
+        -y)
+            autoDGN="CONTINUE"
             shift
             ;;
         -z)
@@ -116,11 +154,48 @@ rm -rf genebridge || true
 git clone https://github.com/ZealousGeneticist/cartogene.git
 git clone https://github.com/ZealousGeneticist/linkcomm-U.git
 git clone https://github.com/ZealousGeneticist/genebridge.git
+wget -O "./disgenet/${diseaseFile}" https://raw.githubusercontent.com/DiseaseOntology/HumanDiseaseOntology/main/DOreports/allXREFinDO.tsv
 echo ""
 echo "If git wasn't 'found', then you may have to run this:"
 echo "sudo apt install git"
 echo ""
 sleep 5
+#Optional DisGeNet phase, as API key for them may have a fee
+case "$autoDGN" in
+    SKIP)
+        echo "Skipping DisGeNet Phase..."
+        sleep 3
+        ;;
+    CONTINUE)
+        echo "DisGeNet Phase..."
+        cd ./disgenet
+        python3 chem_gene_disease.py $DGN_ARGS
+        sleep 2
+        cp $diseaseOutfile ..
+        cd ..
+        sleep 3
+        ;;
+    *)
+        echo "Would you like to continue to the DisGeNet Phase or skip it?"
+        echo "Skipping should be done if you did not input an API key for DisGeNet, and "
+        echo "you should add -y (to continue) or -n (to skip) "
+        read -p "to your command in the future to skip this additional input. (continue/skip): " input
+
+        if [ "$input" == "continue" ]; then
+            echo "DisGeNet Phase..." #Also known as chem_gene_disease.py
+            cd ./disgenet
+            python3 chem_gene_disease.py $DGN_ARGS #$DGN_ARGS=$infile ${outfile1}.tsv $diseaseFile $diseaseOutfile $API_KEY
+            sleep 2
+            cp $diseaseOutfile ..
+            cd ..
+            sleep 3
+        else
+            echo "Skipping DisGeNet Phase..."
+            sleep 3
+        fi
+        ;;
+esac
+
 #
 echo "Cartogene Phase..."
 sleep 1
