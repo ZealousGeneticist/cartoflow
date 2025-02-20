@@ -168,6 +168,7 @@ case "$autoDGN" in
         ;;
     CONTINUE)
         echo "DisGeNet Phase..."
+        cp $infile ./disgenet
         cd ./disgenet
         python3 chem_gene_disease.py $DGN_ARGS
         sleep 2
@@ -183,6 +184,7 @@ case "$autoDGN" in
 
         if [ "$input" == "continue" ]; then
             echo "DisGeNet Phase..." #Also known as chem_gene_disease.py
+            cp $infile ./disgenet
             cd ./disgenet
             python3 chem_gene_disease.py $DGN_ARGS #$DGN_ARGS=$infile ${outfile1}.tsv $diseaseFile $diseaseOutfile $API_KEY
             sleep 2

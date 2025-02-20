@@ -9,11 +9,11 @@ import re
 import argparse
 
 ### User input and output files + API key for DisGeNet
-# infile = '/home/smoorsh/ondemand/data/NKH/APIwork/Practice_Chem.csv'
-# geneOutfile = '/home/smoorsh/ondemand/data/NKH/APIwork/chemicalProtein.tsv'
-# diseaseFile = '/home/smoorsh/ondemand/data/NKH/APIwork/DiseaseOntology/HumanDiseaseOntology-2024-08-29/DOreports/allXREFinDO.tsv'
+# infile = '/home/user/ondemand/data/NKH/APIwork/Practice_Chem.csv'
+# geneOutfile = '/home/user/ondemand/data/NKH/APIwork/chemicalProtein.tsv'
+# diseaseFile = '/home/user/ondemand/data/NKH/APIwork/DiseaseOntology/HumanDiseaseOntology-2024-08-29/DOreports/allXREFinDO.tsv'
 # diseaseOutfile = 'chem_gene_disease_test.tsv'
-# API_KEY = 'b9ef2818-162b-4297-a0f3-92a3de81dd2e'
+# API_KEY = '*********-****-****-****-**********'
 #### Command line: python chem_gene_disease.pi infile geneOutfile diseaseFile diseaseOutfile API_KEY ####
 
 ### Send API request to the CTD
@@ -50,18 +50,18 @@ def process_disease_ids(a_dict):
 def inputData():
     parser = argparse.ArgumentParser(description='Process chemical, gene, and disease data files')
     
-    parser.add_argument("-i", 'infile', required=True, 
+    parser.add_argument("-i", '--infile', required=True, 
                         help='Path to the input CSV file')
-    parser.add_argument("-c", 'geneOutfile', required=False, 
+    parser.add_argument("-c", '--geneOutfile', required=False, 
                         default="interactionsCTD.tsv", 
                         help='Path to the output TSV file for chemical-protein data')
-    parser.add_argument("-p", 'diseaseFile', required=False,
+    parser.add_argument("-p", '--diseaseFile', required=False,
                         default="allXREFinDO.tsv", 
                         help='Path to the disease ontology TSV file')
-    parser.add_argument("-m", 'diseaseOutfile', required=False, 
+    parser.add_argument("-m", '--diseaseOutfile', required=False, 
                         default='chem_gene_disease_test.tsv', 
                         help='Path to the output TSV file for chemical-gene-disease data')
-    parser.add_argument("-k", 'API_KEY', required=True, 
+    parser.add_argument("-k", '--API_KEY', required=True, 
                         help='API key for data access')
 
     args = parser.parse_args()

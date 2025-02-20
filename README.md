@@ -42,7 +42,7 @@ So, nodes are individual data points, edges are connections between them, networ
 
 ------
 
-Once the workflow is finished, there should be 5 other files output into the cartoflow file and a folder containing potentially many files. Those are <nodeMetrics.tsv>, <communityEdgeList.tsv>, <communityMetrics.tsv>, <chemicalProteinInteractions.tsv>, and <fullNetworkGraph.html> . The folder is called toppfunANDgraphs and contains two types of files: <community#GeneEnrichment.csv> and <community#Subgraph.html> .
+Once the workflow is finished, there should be 6 other files output into the cartoflow file and a folder containing potentially many files. Those are <nodeMetrics.tsv>, <communityEdgeList.tsv>, <communityMetrics.tsv>, <chemicalProteinInteractions.tsv>, <diseaseOutfile.tsv>, and <fullNetworkGraph.html> . The folder is called toppfunANDgraphs and contains two types of files: <community#GeneEnrichment.csv> and <community#Subgraph.html> .
 
 + <fullNetworkGraph.html> is the visualization of the entire network of chemical-protein interactions and gene-gene (protein-protein) interactions.
 + <nodeMetrics.tsv> is a table of the nodes in the network and a number of statistics, such as the communities they are part of, about them. 
@@ -50,6 +50,7 @@ Once the workflow is finished, there should be 5 other files output into the car
 + <communityMetrics.tsv> is a table of communities in the network and a number of statistics, such as the number of nodes that are in the community.
 + <communityEdgeList.tsv> is a table of edges in the network and which community they are a part of.
     + Edges only have 1 community, unlike nodes.
++<diseaseOutfile.tsv> (optional if you run chem_gene_disease) is a unique TSV showing gene-disease associations merged with your chemical-gene data. By default: chem_gene_disease_test.tsv.
 + toppfunANDgraphs contains the information for individual communities. Communities matter because it breaks down the complexity of the network into even more closely associated parts. The two files that make up this information are:
     + <community#GeneEnrichment.csv> are the gene enrichments from ToppFun of the genes that make up community #, where # is the community number. *Statistically significant* insights can be found here, and it is presorted by the type of association (example: disease) and then how significant it is while accounting for the chance of false positives (qValueFDR_BH).
     + <community#Subgraph.html> are graphs just like <fullNetworkGraph.htm> EXCEPT they only contain nodes that are part of community #, where # is the community number. This is extremely helpful, more so than even the full network graph, because you get a less clutter look while keeping things that show whether they are a protein or a chemical, or part of multiple other communities for each node.
@@ -60,6 +61,8 @@ Here is a clear visualization of the workflow as it goes between programs, which
 Input: <your_chem_file>
 
 ->
+DisGeNet (optional, requires API key)
+->
 cartogene
 ->
 linkcomm
@@ -67,12 +70,12 @@ linkcomm
 genebridge
 ->
 
-Output: <your_chem_file>,<chemicalProteinInteractions.tsv>, <nodeMetrics.tsv>,<communityMetrics.tsv>,<fullNetworkGraph.html>, <communityEdgeList.tsv>
+Output: <your_chem_file>,<chemicalProteinInteractions.tsv>, <nodeMetrics.tsv>,<communityMetrics.tsv>,<fullNetworkGraph.html>, <communityEdgeList.tsv>, <diseaseOutfile> (if chem_gene_disease is run)
 toppfunANDgraphs CONTAINS <community#GeneEnrichment.csv>,<community#Subgraph.html>
 
 
 ### Advanced User Guide
-Here are the optional commands that can be utilized for cartoflow: 
+Here are the optional commands that can be utilized for cartoflow. All can be combined as needed; only the -i/--input argument is strictly required: 
 + **Input File**
     + "-i", "--input"
     + **ONLY REQUIRED ARGUMENT**
@@ -108,6 +111,26 @@ Here are the optional commands that can be utilized for cartoflow:
     + "-e", "--header"
     + *Bool value*
     + *Description*: This bool value is used as a way to control whether you wish for the final output file to have headers for the edge list or to only have the columns be data. It is **by default** `False` and as such **keeps no headers**.
+
+
+## New Options for Disease Data (chem_gene_disease)
+
+These flags apply if you wish to run the optional chem_gene_disease step before CartoGene.
+
+    If you do not provide an API key (-k), cartoflow will skip the disease association step.
+
+    Disease Output File
+        -m, --diseaseOutfile
+        Description: The optional name for the disease-association TSV produced by the chem_gene_disease script. By default, this is chem_gene_disease_test.tsv. This file combines your chemical-gene interactions with disease annotations from DisGeNet.
+
+    DisGeNet API Key
+        -k, --API_KEY
+        Description: Required if you want to run the DisGeNet queries for gene-disease associations. If omitted, cartoflow will skip the disease enrichment step.
+
+    Auto-Run DisGeNet
+        --autoDGN
+        Bool value (implementation detail in your cartoflow.sh)
+        Description: If True, runs chem_gene_disease automatically. If False, bypasses disease calls entirely.
 
 Extra:
 *There should be maxium number of ~4000 chemicals that can be utilized as stated by the CTD Batch Query API.*
