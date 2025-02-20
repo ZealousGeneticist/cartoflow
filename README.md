@@ -128,9 +128,8 @@ These flags apply if you wish to run the optional chem_gene_disease step before 
         Description: Required if you want to run the DisGeNet queries for gene-disease associations. If omitted, cartoflow will skip the disease enrichment step.
 
     Auto-Run DisGeNet
-        --autoDGN
-        Bool value (implementation detail in your cartoflow.sh)
-        Description: If True, runs chem_gene_disease automatically. If False, bypasses disease calls entirely.
+        -y or -n
+        Description: If -y, runs chem_gene_disease automatically. If -n, bypasses DisGeNet calls entirely.
 
 Extra:
 *There should be maxium number of ~4000 chemicals that can be utilized as stated by the CTD Batch Query API.*
