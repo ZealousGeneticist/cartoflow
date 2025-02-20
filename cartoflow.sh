@@ -22,7 +22,7 @@ fileName="edge2comm.txt" #Edge to Community file suffix -a
 fileName2="comm2nodes.txt" #Community to Nodes file suffix -b
 #This one is for DisGeNet, also known as chem_gene_disease.py, not for cartogene or genebridge
 diseaseFile="allXREFinDO.tsv" # disease oncology file -p
-diseaseOutfile="" # -m
+diseaseOutfile="chem_gene_disease_test.tsv" # -m
 API_KEY="" #API key for DisGeNet -k
 autoDGN="" #Automatically SKIP for DisGeNet functionality -n & -y
 
