@@ -86,7 +86,7 @@ Here are the optional commands that can be utilized for cartoflow. All can be co
     + *Description*: This is the final name of your edge list file. No alterations are made to this final name, so you may label it as any file type you wish (.tsv is suggested). By default, the name is set to <faceted_inact_node_network.tsv>
 + **CTD Chemical-Gene Interaction Table File Name**
     +"-c", "--ctd"
-    + *Description*: This is the name for the intermediate Comparative Toxicogenomics Database (CTD) chemical-gene interaction table file. You can put in a name like -i or -o , however this final file name will have the suffix '_chemical-protein.tsv' added to it. By default, the name is `interactionsCTD`, which makes the final product <interactionsCTD_chemical-protein.tsv>
+    + *Description*: This is the name for the intermediate Comparative Toxicogenomics Database (CTD) chemical-gene interaction table file. You can put in a name like -i or -o , however this final file name will have the suffix '_chemical-protein.tsv' added to it and the suffix "_cgd.tsv" added for the file in the DisGeNet step. By default, the name is `interactionsCTD`, which makes the final product <interactionsCTD_chemical-protein.tsv>
 + **IntAct Intermediate Data File Name**
     + "-j", "--json"
     + *Description*: This is the name for the intermediate IntAct gene-gene interaction JSON data file *prefix*. When any files are being made they have a file number for order like this: `_#_PPI.json` (unless running --test True). By default, the name is `faceted_intact_results`, which means the final name(s) is/are <faceted_intact_results_#_PPI.json>
@@ -124,7 +124,7 @@ These flags apply if you wish to run the optional chem_gene_disease step before 
         Description: The optional name for the disease-association TSV produced by the chem_gene_disease script. By default, this is chem_gene_disease_test.tsv. This file combines your chemical-gene interactions with disease annotations from DisGeNet.
 
     DisGeNet API Key
-        -k, --API_KEY
+        -k
         Description: Required if you want to run the DisGeNet queries for gene-disease associations. If omitted, cartoflow will skip the disease enrichment step.
 
     Auto-Run DisGeNet

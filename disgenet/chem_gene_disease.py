@@ -53,7 +53,7 @@ def inputData():
     parser.add_argument("-i", '--infile', required=True, 
                         help='Path to the input CSV file')
     parser.add_argument("-c", '--geneOutfile', required=False, 
-                        default="interactionsCTD.tsv", 
+                        default="interactionsCTD", 
                         help='Path to the output TSV file for chemical-protein data')
     parser.add_argument("-p", '--diseaseFile', required=False,
                         default="allXREFinDO.tsv", 
@@ -61,7 +61,7 @@ def inputData():
     parser.add_argument("-m", '--diseaseOutfile', required=False, 
                         default='chem_gene_disease_test.tsv', 
                         help='Path to the output TSV file for chemical-gene-disease data')
-    parser.add_argument("-k", '--API_KEY', required=True, 
+    parser.add_argument("-k", required=True, 
                         help='API key for data access')
 
     args = parser.parse_args()
@@ -73,6 +73,7 @@ def inputData():
     diseaseOutfile = args.diseaseOutfile
     API_KEY = args.API_KEY
 
+    geneOutfile = geneOutfile + "_cgd.tsv" #This allows any file name input in, while allowing you to have the identifier for this file
     # Your existing code here, using these variables
     print(f"Input file: {infile}")
     print(f"Gene output file: {geneOutfile}")

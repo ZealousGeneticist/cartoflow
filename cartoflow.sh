@@ -160,6 +160,17 @@ echo "If git wasn't 'found', then you may have to run this:"
 echo "sudo apt install git"
 echo ""
 sleep 5
+
+#Convert orginal file to UNIX \n instead of WIndows \r\n
+input_file="$infile"
+temp_file=$(mktemp)
+# Convert Windows newlines to Unix newlines
+tr -d '\r' < "$input_file" > "$temp_file"
+# Optionally, replace original file
+mv "$temp_file" "$input_file"
+sleep 1
+#
+
 #Optional DisGeNet phase, as API key for them may have a fee
 case "$autoDGN" in
     SKIP)
@@ -173,6 +184,7 @@ case "$autoDGN" in
         python3 chem_gene_disease.py $DGN_ARGS
         sleep 2
         cp $diseaseOutfile ..
+        cp "${outfile1}_cgd.tsv" ..
         cd ..
         sleep 3
         ;;
@@ -189,6 +201,7 @@ case "$autoDGN" in
             python3 chem_gene_disease.py $DGN_ARGS #$DGN_ARGS=$infile ${outfile1}.tsv $diseaseFile $diseaseOutfile $API_KEY
             sleep 2
             cp $diseaseOutfile ..
+            cp "${outfile1}_cgd.tsv" ..
             cd ..
             sleep 3
         else
