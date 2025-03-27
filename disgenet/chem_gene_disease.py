@@ -61,7 +61,7 @@ def inputData():
     parser.add_argument("-m", '--diseaseOutfile', required=False, 
                         default='chem_gene_disease_test.tsv', 
                         help='Path to the output TSV file for chemical-gene-disease data')
-    parser.add_argument("-k", required=True, 
+    parser.add_argument("-k", "--API_KEY", required=True, 
                         help='API key for data access')
 
     args = parser.parse_args()
